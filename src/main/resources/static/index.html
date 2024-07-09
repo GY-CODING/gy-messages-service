@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GY Accounts</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="./img/icons/gy-icon.ico" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="./img/icons/gy-logo.png" class="nav-logo" draggable="false"/>
+            <div class="nav-title-box">
+                <h1 class="nav-title">GY Accounts</h1>
+                <h3 class="nav-version">v2.0.0</h3>
+            </div>
+        </div>
+        <ul class="nav-right">
+            <li class="nav-element">
+                <h4 class="nav-link nav-link-api">API</h4>
+            </li>
+            <li class="nav-element">
+                <h4 class="nav-link nav-link-docs">Docs</h4>
+            </li>
+            <li class="nav-element">
+                <h4 class="nav-link nav-link-changelog">Versions</h4>
+            </li>
+            <li class="nav-element">
+                <h4 class="nav-link nav-link-about">About</h4>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="about-page">
+        <div class="about-content">
+            <h2 class="about-title">GY Accounts</h2>
+            <hr>
+            <p class="about-text">
+                GY Accounts is a service that manages everything related to user accounts for every GYCODING product.
+            </p>
+
+            <ul class="about-links">
+                <li class="about-box about-api">
+                    <img src="./img/svg/api.svg" class="about-box-icon"/>
+                    <h3 class="about-box-title">API Docs</h3>
+                </li>
+                <li class="about-box about-docs">
+                    <img src="./img/svg/docs.svg" class="about-box-icon"/>
+                    <h3 class="about-box-title">Code Docs</h3>
+                </li>
+                <li class="about-box about-changelog">
+                    <img src="./img/svg/changelog.svg" class="about-box-icon"/>
+                    <h3 class="about-box-title">Versions</h3>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="changelog-page">
+        <div class="changelog-content">
+            <h2 class="version-title">2.0.0</h2>
+            <hr>
+            <p class="version-text">
+                BREAKING VERSION.
+                <br>
+                Deprecation and delete of the old authentication service, now the service is based on Auth0 and the use of JWT.
+                Achievements metadata systems are now delegated to this service, instead of the old approach of delegating it to the <a href="https://fallofthegods-data-gycoding.koyeb.app">Fall of the Gods API</a>.
+                <br><br>
+                Now, GY Accounts supports authentication with Email/Username and Password or with Google (redirecting you to our Google form page).
+                <br><br>
+                Also, new exception management got implemented in this version, in order for it to be more scalable and maintainable.
+            </p>
+        </div>
+        <div class="changelog-content">
+            <h2 class="version-title">1.1.0</h2>
+            <hr>
+            <p class="version-text">
+                Internal migration from MySQL database to MongoDB. Also, different key management, now the email remains the only primary key for the user accesses.
+            </p>
+        </div>
+        <div class="changelog-content">
+            <h2 class="version-title">1.0.1</h2>
+            <hr>
+            <p class="version-text">
+                Expanded the services to include updates for the <b>username</b>, <b>email</b>, <b>password</b> and a <b>forgotten password</b> service.
+            </p>
+        </div>
+        <div class="changelog-content">
+            <h2 class="version-title">1.0.0</h2>
+            <hr>
+            <p class="version-text">
+                The service is released with <b>login</b>, <b>sign up</b> and <b>session</b> services.
+                <br><br>
+                Public <a class="inline-link link-docs">documentation</a> is provided.
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <img class="footer-logo" src="img/icons/gy-logo.png" alt="gycoding"/>
+    </footer>
+
+    <script>
+        const navLeft           = document.querySelector('.nav-left');
+        const navLinkAPI        = document.querySelector('.nav-link-api');
+        const navLinkDocs       = document.querySelector('.nav-link-docs');
+        const navLinkChangelog  = document.querySelector('.nav-link-changelog');
+        const navLinkAbout      = document.querySelector('.nav-link-about');
+
+        const boxAPI            = document.querySelector('.about-api');
+        const boxDocs           = document.querySelector('.about-docs');
+        const boxChangelog      = document.querySelector('.about-changelog');
+
+        const linkAPI           = document.querySelector('.link-api');
+        const linkDocs          = document.querySelector('.link-docs');
+
+        const changelogPage     = document.querySelector('.changelog-page');
+        const aboutPage         = document.querySelector('.about-page');
+
+        const footer            = document.querySelector('.footer');
+        const footerLogo        = document.querySelector('.footer-logo');
+
+        boxAPI.addEventListener('click', () => {
+            window.open("https://documenter.getpostman.com/view/34091334/2sA3Bq5rii", "_blank");
+        });
+
+        boxDocs.addEventListener('click', () => {
+            window.open("./docs/index.html", "_blank");
+        });
+
+        boxChangelog.addEventListener('click', () => {
+            changelogPage.style.display     = 'flex';
+            aboutPage.style.display         = 'none';
+
+            footer.style.display            = 'none';
+        });
+
+        navLeft.addEventListener('click', () => {
+            changelogPage.style.display     = 'none';
+            aboutPage.style.display         = 'flex';
+
+            footer.style.display            = 'flex';
+        });
+    
+        navLinkAPI.addEventListener('click', () => {
+            window.open("https://documenter.getpostman.com/view/34091334/2sA3Bq5rii", "_blank");
+        });
+
+        linkAPI.addEventListener('click', () => {
+            window.open("https://documenter.getpostman.com/view/34091334/2sA3Bq5rii", "_blank");
+        });
+
+        navLinkDocs.addEventListener('click', () => {
+            window.open("./docs/index.html", "_blank");
+        });
+
+        linkDocs.addEventListener('click', () => {
+            window.open("./docs/index.html", "_blank");
+        });
+
+        navLinkChangelog.addEventListener('click', () => {
+            changelogPage.style.display     = 'flex';
+            aboutPage.style.display         = 'none';
+
+            footer.style.display            = 'none';
+        });
+
+        navLinkAbout.addEventListener('click', () => {
+            changelogPage.style.display     = 'none';
+            aboutPage.style.display         = 'flex';
+
+            footer.style.display            = 'flex';
+        });
+
+        footerLogo.addEventListener('click', () => {
+            window.open("https://www.gycoding.com", "_blank");
+        });
+    </script>
+</body>
+</html>
