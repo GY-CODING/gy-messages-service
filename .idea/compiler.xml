@@ -18,6 +18,15 @@
         </processorPath>
         <module name="gy-chat" />
       </profile>
+      <profile name="Annotation profile for gy-message" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar" />
+        </processorPath>
+        <module name="gy-message" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="gy-accounts" target="17" />
@@ -27,6 +36,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="gy-accounts" options="-parameters" />
       <module name="gy-chat" options="-parameters" />
+      <module name="gy-message" options="-parameters" />
     </option>
   </component>
 </project>

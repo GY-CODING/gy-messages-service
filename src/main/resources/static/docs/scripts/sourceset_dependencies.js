@@ -1,1 +1,1 @@
-sourceset_dependencies='{"GY Accounts/JVM":[]}'
+sourceset_dependencies='{"GY Messages/JVM":[]}'

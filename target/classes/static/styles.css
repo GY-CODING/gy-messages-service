@@ -18,10 +18,10 @@
 
     --divider-color: #222222;
 
-    --main-color: #a06bf7;
+    --main-color: #6b8cf7;
 
     --text-color: var(--main-color);
-    --text-highlight-color: #c098ff;
+    --text-highlight-color: #99b0fd;
     --text-selection-color: #d4b75531;
 
     --paragraph-color: #e9e9e9;
@@ -452,7 +452,7 @@ span {
 .footer-logo {
     height: 100px;
 
-    filter: grayscale(100%);
+    filter: grayscale(100%) hue-rotate(290deg);
 
     transition: .5s;
 }
@@ -461,7 +461,7 @@ span {
     cursor: pointer;
     transition: .5s;
 
-    filter: grayscale(0%);
+    filter: grayscale(0%) hue-rotate(290deg);
 
     transform: translateY(-5px);
 }

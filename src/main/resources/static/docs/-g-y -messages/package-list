@@ -1,0 +1,127 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:org.gycoding.accounts.application.service.auth////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.auth/index.html
+$dokka.location:org.gycoding.accounts.application.service.auth/AuthRepository///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.auth/-auth-repository/index.html
+$dokka.location:org.gycoding.accounts.application.service.auth/AuthRepository/decode/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.auth/-auth-repository/decode.html
+$dokka.location:org.gycoding.accounts.application.service.auth/AuthRepository/isAdmin/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.auth/-auth-repository/is-admin.html
+$dokka.location:org.gycoding.accounts.application.service.auth/AuthService///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.auth/-auth-service/index.html
+$dokka.location:org.gycoding.accounts.application.service.auth/AuthService/AuthService/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.auth/-auth-service/-auth-service.html
+$dokka.location:org.gycoding.accounts.application.service.auth/AuthService/decode/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.auth/-auth-service/decode.html
+$dokka.location:org.gycoding.accounts.application.service.auth/AuthService/isAdmin/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.auth/-auth-service/is-admin.html
+$dokka.location:org.gycoding.accounts.application.service.chat////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/index.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatRepository///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-repository/index.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatRepository/create/#org.gycoding.accounts.infrastructure.dto.ChatRQDTO#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-repository/create.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatRepository/delete/#java.util.UUID#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-repository/delete.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatRepository/listMessages/#java.util.UUID#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-repository/list-messages.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatRepository/sendMessage/#java.util.UUID#java.lang.String#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-repository/send-message.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatService///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-service/index.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatService/ChatService/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-service/-chat-service.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatService/create/#org.gycoding.accounts.infrastructure.dto.ChatRQDTO#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-service/create.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatService/delete/#java.util.UUID#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-service/delete.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatService/listMessages/#java.util.UUID#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-service/list-messages.html
+$dokka.location:org.gycoding.accounts.application.service.chat/ChatService/sendMessage/#java.util.UUID#java.lang.String#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.application.service.chat/-chat-service/send-message.html
+$dokka.location:org.gycoding.accounts.domain.entities////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.entities/index.html
+$dokka.location:org.gycoding.accounts.domain.entities/EntityChat///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.entities/-entity-chat/index.html
+$dokka.location:org.gycoding.accounts.domain.entities/EntityChat/EntityChat/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.entities/-entity-chat/-entity-chat.html
+$dokka.location:org.gycoding.accounts.domain.entities/EntityChat/toMap/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.entities/-entity-chat/to-map.html
+$dokka.location:org.gycoding.accounts.domain.entities/EntityChat/toString/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.entities/-entity-chat/to-string.html
+$dokka.location:org.gycoding.accounts.domain.entities/Message///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.entities/-message/index.html
+$dokka.location:org.gycoding.accounts.domain.entities/Message/DATE_FORMAT/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.entities/-message/-d-a-t-e_-f-o-r-m-a-t.html
+$dokka.location:org.gycoding.accounts.domain.entities/Message/Message/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.entities/-message/-message.html
+$dokka.location:org.gycoding.accounts.domain.entities/Message/toMap/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.entities/-message/to-map.html
+$dokka.location:org.gycoding.accounts.domain.entities/Message/toString/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.entities/-message/to-string.html
+$dokka.location:org.gycoding.accounts.domain.enums////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/MessageStates.PREPARED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-message-states/-p-r-e-p-a-r-e-d/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/MessageStates.READ///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-message-states/-r-e-a-d/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/MessageStates.RECEIVED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-message-states/-r-e-c-e-i-v-e-d/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/MessageStates.SENT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-message-states/-s-e-n-t/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/MessageStates///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/-message-states/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/MessageStates/state/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/-message-states/state.html
+$dokka.location:org.gycoding.accounts.domain.enums/MessageStates/valueOf/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/-message-states/value-of.html
+$dokka.location:org.gycoding.accounts.domain.enums/MessageStates/values/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/-message-states/values.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.AUTH_ERROR///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-a-u-t-h_-e-r-r-o-r/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.BAD_REQUEST///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-b-a-d_-r-e-q-u-e-s-t/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.CHAT_EXISTS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-c-h-a-t_-e-x-i-s-t-s/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.CHAT_NOT_FOUND///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-c-h-a-t_-n-o-t_-f-o-u-n-d/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.DB_ERROR///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-d-b_-e-r-r-o-r/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.HOME_NOT_FOUND///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-h-o-m-e_-n-o-t_-f-o-u-n-d/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.INVALID_AUTH///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-i-n-v-a-l-i-d_-a-u-t-h/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.MESSAGE_NOT_SENT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-m-e-s-s-a-g-e_-n-o-t_-s-e-n-t/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.METADATA_NOT_FOUND///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-m-e-t-a-d-a-t-a_-n-o-t_-f-o-u-n-d/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.SERVER_ERROR///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-s-e-r-v-e-r_-e-r-r-o-r/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus.USER_NOT_ADMIN///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/-u-s-e-r_-n-o-t_-a-d-m-i-n/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/index.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus/code/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/code.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus/message/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/message.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus/status/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/status.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus/valueOf/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/value-of.html
+$dokka.location:org.gycoding.accounts.domain.enums/ServerStatus/values/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.enums/-server-status/values.html
+$dokka.location:org.gycoding.accounts.domain.exceptions////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.exceptions/index.html
+$dokka.location:org.gycoding.accounts.domain.exceptions/ChatAPIException///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.exceptions/-chat-a-p-i-exception/index.html
+$dokka.location:org.gycoding.accounts.domain.exceptions/ChatAPIException/ChatAPIException/#org.gycoding.accounts.domain.enums.ServerStatus/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.domain.exceptions/-chat-a-p-i-exception/-chat-a-p-i-exception.html
+$dokka.location:org.gycoding.accounts.infrastructure.api////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/ChatController///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-chat-controller/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/ChatController/ChatController/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-chat-controller/-chat-controller.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/ChatController/create/#org.gycoding.accounts.infrastructure.dto.ChatRQDTO#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-chat-controller/create.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/ChatController/delete/#java.util.UUID#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-chat-controller/delete.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/ChatController/list/#java.util.UUID#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-chat-controller/list.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/ChatController/sendMessage/#java.util.UUID#org.gycoding.accounts.infrastructure.dto.MessageRQDTO#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-chat-controller/send-message.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/ExceptionController///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-exception-controller/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/ExceptionController/ExceptionController/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-exception-controller/-exception-controller.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/ExceptionController/handleChatAPIException/#org.gycoding.accounts.domain.exceptions.ChatAPIException/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-exception-controller/handle-chat-a-p-i-exception.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/HomeController///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-home-controller/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/HomeController/HomeController/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-home-controller/-home-controller.html
+$dokka.location:org.gycoding.accounts.infrastructure.api/HomeController/home/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.api/-home-controller/home.html
+$dokka.location:org.gycoding.accounts.infrastructure.config////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.config/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.config/CORSConfig///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.config/-c-o-r-s-config/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.config/CORSConfig/CORSConfig/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.config/-c-o-r-s-config/-c-o-r-s-config.html
+$dokka.location:org.gycoding.accounts.infrastructure.config/CORSConfig/addCorsMappings/#org.springframework.web.servlet.config.annotation.CorsRegistry/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.config/-c-o-r-s-config/add-cors-mappings.html
+$dokka.location:org.gycoding.accounts.infrastructure.dto////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.dto/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.dto/ChatRQDTO///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.dto/-chat-r-q-d-t-o/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.dto/ChatRQDTO/ChatRQDTO/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.dto/-chat-r-q-d-t-o/-chat-r-q-d-t-o.html
+$dokka.location:org.gycoding.accounts.infrastructure.dto/MessageRQDTO///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.dto/-message-r-q-d-t-o/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.dto/MessageRQDTO/MessageRQDTO/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.dto/-message-r-q-d-t-o/-message-r-q-d-t-o.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.auth////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.auth/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.auth/AuthFacade///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.auth/-auth-facade/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.auth/AuthFacade/decode/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.auth/-auth-facade/decode.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.auth/AuthFacade/getMetadata/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.auth/-auth-facade/get-metadata.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.auth/AuthFacade/updateMetadata/#java.lang.String#java.util.Map<java.lang.String,java.lang.Object>/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.auth/-auth-facade/update-metadata.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.auth/AuthFacadeImpl///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.auth/-auth-facade-impl/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.auth/AuthFacadeImpl/AuthFacadeImpl/#java.lang.String#java.lang.String#java.lang.String#java.lang.String#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.auth/-auth-facade-impl/-auth-facade-impl.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.auth/AuthFacadeImpl/decode/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.auth/-auth-facade-impl/decode.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.auth/AuthFacadeImpl/getMetadata/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.auth/-auth-facade-impl/get-metadata.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.auth/AuthFacadeImpl/updateMetadata/#java.lang.String#java.util.Map<java.lang.String,java.lang.Object>/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.auth/-auth-facade-impl/update-metadata.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.database.repository////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.database.repository/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.database.repository/ChatMongoRepository///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.database.repository/-chat-mongo-repository/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.database.repository/ChatMongoRepository/findByChatId/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.database.repository/-chat-mongo-repository/find-by-chat-id.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.database.service////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.database.service/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.database.service/ChatMongoService///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.database.service/-chat-mongo-service/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.database.service/ChatMongoService/ChatMongoService/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.database.service/-chat-mongo-service/-chat-mongo-service.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.database.service/ChatMongoService/create/#org.gycoding.accounts.domain.entities.EntityChat/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.database.service/-chat-mongo-service/create.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.database.service/ChatMongoService/delete/#java.util.UUID/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.database.service/-chat-mongo-service/delete.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.database.service/ChatMongoService/listMessages/#java.util.UUID/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.database.service/-chat-mongo-service/list-messages.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.database.service/ChatMongoService/sendMessage/#java.util.UUID#org.gycoding.accounts.domain.entities.Message/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.database.service/-chat-mongo-service/send-message.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.unirest////PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.unirest/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.unirest/UnirestFacade///PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.unirest/-unirest-facade/index.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.unirest/UnirestFacade/UnirestFacade/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.unirest/-unirest-facade/-unirest-facade.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.unirest/UnirestFacade/get/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.unirest/-unirest-facade/get.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.unirest/UnirestFacade/post/#java.lang.String#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.unirest/-unirest-facade/post.html
+$dokka.location:org.gycoding.accounts.infrastructure.external.unirest/UnirestFacade/post/#java.lang.String/PointingToDeclaration/-g-y -messages/org.gycoding.accounts.infrastructure.external.unirest/-unirest-facade/post.html
+$dokka.location:org.gycoding.accounts////PointingToDeclaration/-g-y -messages/org.gycoding.accounts/index.html
+$dokka.location:org.gycoding.accounts/ChatApplication///PointingToDeclaration/-g-y -messages/org.gycoding.accounts/-chat-application/index.html
+$dokka.location:org.gycoding.accounts/ChatApplication/ChatApplication/#/PointingToDeclaration/-g-y -messages/org.gycoding.accounts/-chat-application/-chat-application.html
+$dokka.location:org.gycoding.accounts/ChatApplication/main/#java.lang.String[]/PointingToDeclaration/-g-y -messages/org.gycoding.accounts/-chat-application/main.html
+org.gycoding.accounts
+org.gycoding.accounts.application.service.auth
+org.gycoding.accounts.application.service.chat
+org.gycoding.accounts.domain.entities
+org.gycoding.accounts.domain.enums
+org.gycoding.accounts.domain.exceptions
+org.gycoding.accounts.infrastructure.api
+org.gycoding.accounts.infrastructure.config
+org.gycoding.accounts.infrastructure.dto
+org.gycoding.accounts.infrastructure.external.auth
+org.gycoding.accounts.infrastructure.external.database.repository
+org.gycoding.accounts.infrastructure.external.database.service
+org.gycoding.accounts.infrastructure.external.unirest
+
