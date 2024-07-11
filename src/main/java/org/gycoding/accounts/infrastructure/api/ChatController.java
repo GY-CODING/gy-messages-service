@@ -28,6 +28,15 @@ public class ChatController {
         return ResponseEntity.ok(chatService.create(chatRQDTO, authService.decode(jwt)).toString());
     }
 
+    @PostMapping("/delete")
+    public ResponseEntity<?> delete(
+            @RequestBody UUID chatId,
+            @RequestHeader String jwt
+    ) throws ChatAPIException {
+        chatService.delete(chatId, authService.decode(jwt));
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping("/{chatId}/send")
     public ResponseEntity<?> sendMessage(
             @PathVariable UUID chatId,

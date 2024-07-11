@@ -5,5 +5,4 @@ import lombok.Builder;
 @Builder
 public record MessageRQDTO(
     String message
-) {
-}
+) { }

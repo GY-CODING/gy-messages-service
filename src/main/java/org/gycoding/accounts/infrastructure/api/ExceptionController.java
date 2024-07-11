@@ -17,7 +17,7 @@ public class ExceptionController {
             '}';
 
     @ExceptionHandler(ChatAPIException.class)
-    public ResponseEntity<String> handleFOTGAPIException(ChatAPIException e) {
+    public ResponseEntity<String> handleChatAPIException(ChatAPIException e) {
         final var response = String.format(EXCEPTION_FORMAT, e.getStatus().getCode(), e.getMessage(), EXCEPTION_ORIGIN, e.getStatus().getStatus().value());
 
         return new ResponseEntity<>(response, e.getStatus().getStatus());

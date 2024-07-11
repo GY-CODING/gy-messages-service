@@ -13,6 +13,8 @@ public enum ServerStatus {
     MESSAGE_NOT_SENT("Message was not sent.", HttpStatus.INTERNAL_SERVER_ERROR),
 
     INVALID_AUTH("Invalid authentication token.", HttpStatus.UNAUTHORIZED),
+    USER_NOT_ADMIN("User is not the admin of this chat.", HttpStatus.FORBIDDEN),
+    METADATA_NOT_FOUND("Metadata not found.", HttpStatus.NOT_FOUND),
 
     BAD_REQUEST("The endpoint is malformed.", HttpStatus.BAD_REQUEST),
     DB_ERROR("An error with the database has occurred, sorry for the inconvenience.", HttpStatus.INTERNAL_SERVER_ERROR),

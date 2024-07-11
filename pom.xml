@@ -9,10 +9,10 @@
 		<relativePath/>
 	</parent>
 	<groupId>org.gycoding</groupId>
-	<artifactId>gy-chat</artifactId>
+	<artifactId>gy-message</artifactId>
 	<version>1.0.0</version>
 	<name>gy-chat</name>
-	<description>GY Chat is the official chat service of every GYCODING product.</description>
+	<description>GY Messages is the official chat service of every GYCODING product.</description>
 	<properties>
 		<java.version>17</java.version>
 		<docker.image.prefix>gycoding</docker.image.prefix>
@@ -124,7 +124,7 @@
 				</executions>
 				<configuration>
 					<skip>false</skip>
-					<moduleName>GY Chat</moduleName>
+					<moduleName>GY Messages</moduleName>
 					<outputDir>./src/main/resources/static/docs</outputDir>
 					<cacheRoot>default</cacheRoot>
 					<offlineMode>false</offlineMode>

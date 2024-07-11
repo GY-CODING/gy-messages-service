@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public interface ChatRepository {
     EntityChat create(ChatRQDTO chatRQDTO, String userId) throws ChatAPIException;
+    void delete(UUID chatId, String userId) throws ChatAPIException;
     Message sendMessage(UUID chatId, String content, String userId) throws ChatAPIException;
     List<Message> listMessages(UUID chatId, String userId) throws ChatAPIException;
 }

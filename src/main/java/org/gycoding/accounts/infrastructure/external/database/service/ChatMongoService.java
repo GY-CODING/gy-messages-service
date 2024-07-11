@@ -22,6 +22,10 @@ public class ChatMongoService {
         return chatMongoRepository.save(chat);
     }
 
+    public void delete(UUID chatId) {
+        chatMongoRepository.delete(this.getChat(chatId));
+    }
+
     public Message sendMessage(UUID chatId, Message message) {
         var chat = this.getChat(chatId);
         chat.messages().add(message);

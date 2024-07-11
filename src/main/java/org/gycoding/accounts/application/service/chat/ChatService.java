@@ -1,5 +1,6 @@
 package org.gycoding.accounts.application.service.chat;
 
+import org.gycoding.accounts.application.service.auth.AuthService;
 import org.gycoding.accounts.domain.entities.EntityChat;
 import org.gycoding.accounts.domain.entities.Message;
 import org.gycoding.accounts.domain.enums.MessageStates;
@@ -10,6 +11,7 @@ import org.gycoding.accounts.infrastructure.external.database.service.ChatMongoS
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +19,8 @@ import java.util.UUID;
 public class ChatService implements ChatRepository {
     @Autowired
     private ChatMongoService chatMongoService = null;
+    @Autowired
+    private AuthService authService;
 
     @Override
     public EntityChat create(ChatRQDTO chatRQDTO, String userId) throws ChatAPIException {
@@ -37,12 +41,25 @@ public class ChatService implements ChatRepository {
     }
 
     @Override
+    public void delete(UUID chatId, String userId) throws ChatAPIException {
+        if(authService.isAdmin(userId)) {
+            try {
+                chatMongoService.delete(chatId);
+            } catch(Exception e) {
+                throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
+            }
+        } else {
+            throw new ChatAPIException(ServerStatus.USER_NOT_ADMIN);
+        }
+    }
+
+    @Override
     public Message sendMessage(UUID chatId, String content, String userId) throws ChatAPIException {
         try {
             var message = Message.builder()
                     .author(userId)
                     .content(content)
-                    .date("2021-09-01")
+                    .date(OffsetDateTime.now().format(Message.DATE_FORMAT))
                     .state(MessageStates.SENT)
                     .build();
 

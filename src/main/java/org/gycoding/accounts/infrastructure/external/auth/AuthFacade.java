@@ -9,12 +9,6 @@ import java.util.Map;
 
 @Repository
 public interface AuthFacade {
-    TokenHolder login(String email, String password) throws Auth0Exception;
-    CreatedUser signUp(String email, String username, String password) throws Auth0Exception;
-
-    String googleAuth();
-    TokenHolder handleGoogleResponse(String code) throws Auth0Exception;
-
     Map<String, Object> getMetadata(String userId) throws Auth0Exception;
     void updateMetadata(String userId, Map<String, Object> metadata) throws Auth0Exception;
 
