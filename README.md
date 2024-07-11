@@ -34,7 +34,7 @@ The reference static website was made using just **HTML**, **CSS** and some **Ja
 
 | Product Owner |
 | :---: |
-| <img src="https://github.com/gy-toxyc.png?size=115" width=115> <br> [![toxyc](https://img.shields.io/badge/gy-toxyc-yellow?style=for-the-badge)](https://github.com/ghost) |
+| <img src="https://github.com/gy-toxyc.png?size=115" width=115> <br> [![toxyc](https://img.shields.io/badge/toxyc-yellow?style=for-the-badge)](https://github.com/ghost) |
 
 <br>
 
