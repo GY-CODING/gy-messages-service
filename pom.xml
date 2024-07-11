@@ -11,7 +11,7 @@
 	<groupId>org.gycoding</groupId>
 	<artifactId>gy-message</artifactId>
 	<version>1.0.0</version>
-	<name>gy-chat</name>
+	<name>gy-messages-service</name>
 	<description>GY Messages is the official chat service of every GYCODING product.</description>
 	<properties>
 		<java.version>17</java.version>
