@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/chat")
+@RequestMapping("/messages")
 public class ChatController {
     @Autowired
     private ChatService chatService = null;
@@ -25,15 +25,24 @@ public class ChatController {
             @RequestBody ChatRQDTO chatRQDTO,
             @RequestHeader String jwt
     ) throws ChatAPIException {
-        return ResponseEntity.ok(chatService.create(chatRQDTO, authService.decode(jwt)).toString());
+        return ResponseEntity.ok(chatService.create(chatRQDTO, jwt).toString());
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping("/{chatId}/delete")
     public ResponseEntity<?> delete(
-            @RequestBody UUID chatId,
+            @PathVariable UUID chatId,
             @RequestHeader String jwt
     ) throws ChatAPIException {
-        chatService.delete(chatId, authService.decode(jwt));
+        chatService.delete(chatId, jwt);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{chatId}/leave")
+    public ResponseEntity<?> leave(
+            @PathVariable UUID chatId,
+            @RequestHeader String jwt
+    ) throws ChatAPIException {
+        chatService.leave(chatId, jwt);
         return ResponseEntity.noContent().build();
     }
 
@@ -43,14 +52,46 @@ public class ChatController {
             @RequestBody MessageRQDTO messageRQDTO,
             @RequestHeader String jwt
     ) throws ChatAPIException {
-        return ResponseEntity.ok(chatService.sendMessage(chatId, messageRQDTO.message(), authService.decode(jwt)));
+        return ResponseEntity.ok(chatService.sendMessage(chatId, messageRQDTO.message(), jwt));
     }
 
-    @GetMapping("/{chatId}/list")
-	public ResponseEntity<?> list(
+    @GetMapping("/{chatId}/get")
+    public ResponseEntity<?> getChat(
             @PathVariable UUID chatId,
             @RequestHeader String jwt
     ) throws ChatAPIException {
-        return ResponseEntity.ok(chatService.listMessages(chatId, authService.decode(jwt)).toString());
-	}
+        return ResponseEntity.ok(chatService.getChat(chatId, authService.decode(jwt)).toString());
+    }
+
+    @GetMapping("/{chatId}/members/list")
+    public ResponseEntity<?> listMembers(
+            @PathVariable UUID chatId,
+            @RequestHeader String jwt
+    ) throws ChatAPIException {
+        return ResponseEntity.ok(chatService.listMembers(chatId, jwt).toString());
+    }
+
+    @PostMapping("/{chatId}/members/add")
+    public ResponseEntity<?> addMember(
+            @PathVariable UUID chatId,
+            @RequestHeader String jwt
+    ) throws ChatAPIException {
+        chatService.addMember(chatId, jwt);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{chatId}/messages/list")
+    public ResponseEntity<?> listMessages(
+            @PathVariable UUID chatId,
+            @RequestHeader String jwt
+    ) throws ChatAPIException {
+        return ResponseEntity.ok(chatService.listMessages(chatId, jwt).toString());
+    }
+
+    @GetMapping("/chats/list")
+    public ResponseEntity<?> listChats(
+            @RequestHeader String jwt
+    ) throws ChatAPIException {
+        return ResponseEntity.ok(chatService.listChats(jwt).toString());
+    }
 }

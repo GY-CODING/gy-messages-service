@@ -19,17 +19,6 @@ public class AuthService implements AuthRepository {
     private AuthFacade authFacade = null;
 
     @Override
-    public Boolean isAdmin(String userId) throws ChatAPIException {
-        try {
-            authFacade.getMetadata(userId);
-
-            return false;
-        } catch(Exception e) {
-            throw new ChatAPIException(ServerStatus.METADATA_NOT_FOUND);
-        }
-    }
-
-    @Override
     public String decode(String jwt) throws ChatAPIException {
         try {
             return authFacade.decode(jwt);

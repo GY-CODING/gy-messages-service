@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.gycoding</groupId>
 	<artifactId>gy-message</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<name>gy-messages-service</name>
 	<description>GY Messages is the official chat service of every GYCODING product.</description>
 	<properties>
@@ -73,6 +73,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+
+		<dependency>
+		<groupId>com.googlecode.json-simple</groupId>
+		<artifactId>json-simple</artifactId>
+		<version>1.1.1</version>
+	</dependency>
 	</dependencies>
 
 	<build>

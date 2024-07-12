@@ -17,13 +17,13 @@ public record EntityChat(
         String name,
         String creator,
         String owner,
-        List<?> members,
+        List<Member> members,
         List<Message> messages
 ) {
     @Override
     public String toString() {
         return "{" +
-                "\"chatId\": " + chatId +
+                "\"chatId\": \"" + chatId + "\"" +
                 ", \"name\": \"" + name + "\"" +
                 ", \"creator\": \"" + creator + "\"" +
                 ", \"owner\": \"" + owner + "\"" +

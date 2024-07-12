@@ -9,8 +9,5 @@ import java.util.Map;
 
 @Repository
 public interface AuthFacade {
-    Map<String, Object> getMetadata(String userId) throws Auth0Exception;
-    void updateMetadata(String userId, Map<String, Object> metadata) throws Auth0Exception;
-
     String decode(String jwt);
 }
