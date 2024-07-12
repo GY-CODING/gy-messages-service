@@ -2,12 +2,15 @@ package org.gycoding.accounts.application.service.chat;
 
 import org.gycoding.accounts.application.service.auth.AuthService;
 import org.gycoding.accounts.domain.entities.EntityChat;
+import org.gycoding.accounts.domain.entities.Member;
 import org.gycoding.accounts.domain.entities.Message;
 import org.gycoding.accounts.domain.enums.MessageStates;
 import org.gycoding.accounts.domain.enums.ServerStatus;
 import org.gycoding.accounts.domain.exceptions.ChatAPIException;
 import org.gycoding.accounts.infrastructure.dto.ChatRQDTO;
 import org.gycoding.accounts.infrastructure.external.database.service.ChatMongoService;
+import org.gycoding.accounts.infrastructure.external.gyaccounts.GYAccountsFacade;
+import org.gycoding.accounts.infrastructure.external.gyaccounts.GYAccountsFacadeImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,19 +24,25 @@ public class ChatService implements ChatRepository {
     private ChatMongoService chatMongoService = null;
     @Autowired
     private AuthService authService;
+    @Autowired
+    private GYAccountsFacadeImpl gyAccountsFacade;
 
     @Override
-    public EntityChat create(ChatRQDTO chatRQDTO, String userId) throws ChatAPIException {
+    public EntityChat create(ChatRQDTO chatRQDTO, String jwt) throws ChatAPIException {
         try {
+            var userId = authService.decode(jwt);
+            var initialMembers = List.of(Member.builder().userId(userId).build());
+
             var chat = EntityChat.builder()
                     .chatId(UUID.randomUUID().toString())
                     .name(chatRQDTO.name())
                     .creator(userId)
                     .owner(userId)
-                    .members(List.of())
+                    .members(initialMembers)
                     .messages(List.of())
                     .build();
 
+            gyAccountsFacade.addChat(jwt, chat.chatId(), Boolean.TRUE);
             return chatMongoService.create(chat);
         } catch(Exception e) {
             throw new ChatAPIException(ServerStatus.CHAT_EXISTS);
@@ -41,21 +50,80 @@ public class ChatService implements ChatRepository {
     }
 
     @Override
-    public void delete(UUID chatId, String userId) throws ChatAPIException {
-        if(authService.isAdmin(userId)) {
-            try {
-                chatMongoService.delete(chatId);
-            } catch(Exception e) {
-                throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
+    public void delete(UUID chatId, String jwt) throws ChatAPIException {
+        var userId = authService.decode(jwt);
+        var userIsMember    = false;
+
+        try {
+            for(Member member : chatMongoService.listMembers(chatId)) {
+                if(member.userId().equals(userId)) {
+                    userIsMember = true;
+                    break;
+                }
             }
-        } else {
-            throw new ChatAPIException(ServerStatus.USER_NOT_ADMIN);
+
+            if(!userIsMember) {
+                throw new ChatAPIException(ServerStatus.USER_NOT_MEMBER);
+            }
+
+            for(Member member : chatMongoService.listMembers(chatId)) {
+                if(!this.getChat(chatId, jwt).owner().equals(userId)) {
+                    throw new ChatAPIException(ServerStatus.USER_NOT_ADMIN);
+                }
+            }
+
+            for(Member member : chatMongoService.listMembers(chatId)) {
+                gyAccountsFacade.removeChat(userId, chatId);
+            }
+
+            chatMongoService.delete(chatId);
+        } catch(Exception e) {          // TODO. CHANGE THIS INMEDIATELY.
+            e.printStackTrace();
+            throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
         }
     }
 
     @Override
-    public Message sendMessage(UUID chatId, String content, String userId) throws ChatAPIException {
+    public void leave(UUID chatId, String jwt) throws ChatAPIException {
+        var userId          = authService.decode(jwt);
+        Member memberFound  = null;
+
         try {
+            for(Member member : chatMongoService.listMembers(chatId)) {
+                if(member.userId().equals(userId)) {
+                    memberFound = member;
+                    break;
+                }
+            }
+
+            if(memberFound == null) {
+                throw new ChatAPIException(ServerStatus.USER_NOT_MEMBER);
+            }
+
+            gyAccountsFacade.removeChat(userId, chatId);
+            chatMongoService.removeMember(chatId, memberFound);
+        } catch(Exception e) {
+            throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public Message sendMessage(UUID chatId, String content, String jwt) throws ChatAPIException {
+        var userId          = authService.decode(jwt);
+        var userIsMember    = false;
+
+        try {
+            for(Member member : chatMongoService.listMembers(chatId)) {
+                if(member.userId().equals(userId)) {
+                    userIsMember = true;
+                    break;
+                }
+            }
+
+            if(!userIsMember) {
+                throw new ChatAPIException(ServerStatus.USER_NOT_MEMBER);
+            }
+
             var message = Message.builder()
                     .author(userId)
                     .content(content)
@@ -70,10 +138,102 @@ public class ChatService implements ChatRepository {
     }
 
     @Override
-    public List<Message> listMessages(UUID chatId, String userId) throws ChatAPIException {
+    public EntityChat getChat(UUID chatId, String jwt) throws ChatAPIException {
+        var userId          = authService.decode(jwt);
+        var userIsMember    = false;
+
         try {
+            for(Member member : chatMongoService.listMembers(chatId)) {
+                if(member.userId().equals(userId)) {
+                    userIsMember = true;
+                    break;
+                }
+            }
+
+            if(!userIsMember) {
+                throw new ChatAPIException(ServerStatus.USER_NOT_MEMBER);
+            }
+
+            return chatMongoService.getChat(chatId);
+        } catch(Exception e) {
+            throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public List<Message> listMessages(UUID chatId, String jwt) throws ChatAPIException {
+        var userId          = authService.decode(jwt);
+        var userIsMember    = false;
+
+        try {
+            for(Member member : chatMongoService.listMembers(chatId)) {
+                if(member.userId().equals(userId)) {
+                    userIsMember = true;
+                    break;
+                }
+            }
+
+            if(!userIsMember) {
+                throw new ChatAPIException(ServerStatus.USER_NOT_MEMBER);
+            }
+
             return chatMongoService.listMessages(chatId);
         } catch(Exception e) {
+            throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public void addMember(UUID chatId, String jwt) throws ChatAPIException {
+        var userId          = authService.decode(jwt);
+
+        try {
+            for(Member member : chatMongoService.listMembers(chatId)) {
+                if(member.userId().equals(userId)) {
+                    throw new ChatAPIException(ServerStatus.USER_ALREADY_MEMBER);
+                }
+            }
+
+            var member = Member.builder()
+                    .userId(userId)
+                    .build();
+
+            gyAccountsFacade.addChat(jwt, chatId.toString(), Boolean.FALSE);
+            chatMongoService.addMember(chatId, member);
+        } catch(Exception e) {
+            throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public List<Member> listMembers(UUID chatId, String jwt) throws ChatAPIException {
+        var userId          = authService.decode(jwt);
+        var userIsMember    = false;
+
+        try {
+            for(Member member : chatMongoService.listMembers(chatId)) {
+                if(member.userId().equals(userId)) {
+                    userIsMember = true;
+                    break;
+                }
+            }
+
+            if(!userIsMember) {
+                throw new ChatAPIException(ServerStatus.USER_NOT_MEMBER);
+            }
+
+            return chatMongoService.listMembers(chatId);
+        } catch(Exception e) {
+            throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public List<EntityChat> listChats(String jwt) throws ChatAPIException {
+        try {
+            return chatMongoService.listChats(gyAccountsFacade.listChats(jwt));
+        } catch(Exception e) {
+            e.printStackTrace();
             throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
         }
     }
