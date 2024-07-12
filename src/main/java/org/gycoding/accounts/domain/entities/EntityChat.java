@@ -23,7 +23,7 @@ public record EntityChat(
     @Override
     public String toString() {
         return "{" +
-                ", \"chatId\": " + chatId +
+                "\"chatId\": " + chatId +
                 ", \"name\": \"" + name + "\"" +
                 ", \"creator\": \"" + creator + "\"" +
                 ", \"owner\": \"" + owner + "\"" +
