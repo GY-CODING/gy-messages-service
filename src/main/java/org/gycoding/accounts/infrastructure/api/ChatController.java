@@ -2,6 +2,7 @@ package org.gycoding.accounts.infrastructure.api;
 
 import org.gycoding.accounts.application.service.auth.AuthService;
 import org.gycoding.accounts.application.service.chat.ChatService;
+import org.gycoding.accounts.application.service.websocket.NotificationService;
 import org.gycoding.accounts.domain.exceptions.ChatAPIException;
 import org.gycoding.accounts.infrastructure.dto.ChatRQDTO;
 import org.gycoding.accounts.infrastructure.dto.MessageRQDTO;
@@ -19,6 +20,9 @@ public class ChatController {
 
     @Autowired
     private AuthService authService = null;
+
+    @Autowired
+    private NotificationService notificationService;
 
     @PostMapping("/create")
     public ResponseEntity<?> create(
@@ -52,6 +56,7 @@ public class ChatController {
             @RequestBody MessageRQDTO messageRQDTO,
             @RequestHeader String jwt
     ) throws ChatAPIException {
+        notificationService.notify(chatId.toString());
         return ResponseEntity.ok(chatService.sendMessage(chatId, messageRQDTO.message(), jwt));
     }
 
