@@ -56,6 +56,10 @@ public class ChatService implements ChatRepository {
 
         try {
             for(Member member : chatMongoService.listMembers(chatId)) {
+                if(!this.getChat(chatId, jwt).owner().equals(userId)) {
+                    throw new ChatAPIException(ServerStatus.USER_NOT_ADMIN);
+                }
+
                 if(member.userId().equals(userId)) {
                     userIsMember = true;
                     break;
@@ -67,18 +71,11 @@ public class ChatService implements ChatRepository {
             }
 
             for(Member member : chatMongoService.listMembers(chatId)) {
-                if(!this.getChat(chatId, jwt).owner().equals(userId)) {
-                    throw new ChatAPIException(ServerStatus.USER_NOT_ADMIN);
-                }
-            }
-
-            for(Member member : chatMongoService.listMembers(chatId)) {
-                gyAccountsFacade.removeChat(userId, chatId);
+                gyAccountsFacade.removeChat(member.userId(), chatId);
             }
 
             chatMongoService.delete(chatId);
-        } catch(Exception e) {          // TODO. CHANGE THIS INMEDIATELY.
-            e.printStackTrace();
+        } catch(NullPointerException e) {
             throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
         }
     }

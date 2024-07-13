@@ -70,11 +70,7 @@ public class ChatMongoService {
         chatMongoRepository.save(chat);
     }
 
-    public List<Member> listMembers(UUID chatId) throws Exception {
-        try {
-            return this.getChat(chatId).members();
-        } catch (NullPointerException e) {
-            throw e;
-        }
+    public List<Member> listMembers(UUID chatId) throws NullPointerException {
+        return this.getChat(chatId).members();
     }
 }
