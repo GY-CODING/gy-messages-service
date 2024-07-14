@@ -25,8 +25,6 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
                 .admin(isAdmin)
                 .build();
 
-        System.out.println(chat.toString());
-
         UnirestFacade.put(URL + "/auth/messages/chat/add", jwt, chat.toString());
     }
 

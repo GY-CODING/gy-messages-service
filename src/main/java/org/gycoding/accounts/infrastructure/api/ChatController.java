@@ -2,6 +2,7 @@ package org.gycoding.accounts.infrastructure.api;
 
 import org.gycoding.accounts.application.service.auth.AuthService;
 import org.gycoding.accounts.application.service.chat.ChatService;
+import org.gycoding.accounts.application.service.websocket.NotificationService;
 import org.gycoding.accounts.domain.exceptions.ChatAPIException;
 import org.gycoding.accounts.infrastructure.dto.ChatRQDTO;
 import org.gycoding.accounts.infrastructure.dto.MessageRQDTO;
