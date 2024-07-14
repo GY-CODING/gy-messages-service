@@ -21,9 +21,6 @@ public class ChatController {
     @Autowired
     private AuthService authService = null;
 
-    @Autowired
-    private NotificationService notificationService;
-
     @PostMapping("/create")
     public ResponseEntity<?> create(
             @RequestBody ChatRQDTO chatRQDTO,
@@ -56,7 +53,6 @@ public class ChatController {
             @RequestBody MessageRQDTO messageRQDTO,
             @RequestHeader String jwt
     ) throws ChatAPIException {
-        notificationService.notify(chatId.toString());
         return ResponseEntity.ok(chatService.sendMessage(chatId, messageRQDTO.message(), jwt));
     }
 

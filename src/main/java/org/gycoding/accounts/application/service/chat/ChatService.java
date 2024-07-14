@@ -1,6 +1,7 @@
 package org.gycoding.accounts.application.service.chat;
 
 import org.gycoding.accounts.application.service.auth.AuthService;
+import org.gycoding.accounts.application.service.websocket.NotificationService;
 import org.gycoding.accounts.domain.entities.EntityChat;
 import org.gycoding.accounts.domain.entities.Member;
 import org.gycoding.accounts.domain.entities.Message;
@@ -22,10 +23,15 @@ import java.util.UUID;
 public class ChatService implements ChatRepository {
     @Autowired
     private ChatMongoService chatMongoService = null;
+
     @Autowired
     private AuthService authService;
+
     @Autowired
     private GYAccountsFacadeImpl gyAccountsFacade;
+
+    @Autowired
+    private NotificationService notificationService;
 
     @Override
     public EntityChat create(ChatRQDTO chatRQDTO, String jwt) throws ChatAPIException {
@@ -42,6 +48,7 @@ public class ChatService implements ChatRepository {
                     .messages(List.of())
                     .build();
 
+            notificationService.notify(chat.chatId().toString());
             gyAccountsFacade.addChat(jwt, chat.chatId(), Boolean.TRUE);
             return chatMongoService.create(chat);
         } catch(Exception e) {
@@ -74,6 +81,7 @@ public class ChatService implements ChatRepository {
                 gyAccountsFacade.removeChat(member.userId(), chatId);
             }
 
+            notificationService.notify(chatId.toString());
             chatMongoService.delete(chatId);
         } catch(NullPointerException e) {
             throw new ChatAPIException(ServerStatus.CHAT_NOT_FOUND);
@@ -97,6 +105,7 @@ public class ChatService implements ChatRepository {
                 throw new ChatAPIException(ServerStatus.USER_NOT_MEMBER);
             }
 
+            notificationService.notify(chatId.toString());
             gyAccountsFacade.removeChat(userId, chatId);
             chatMongoService.removeMember(chatId, memberFound);
         } catch(Exception e) {
@@ -106,8 +115,8 @@ public class ChatService implements ChatRepository {
 
     @Override
     public Message sendMessage(UUID chatId, String content, String jwt) throws ChatAPIException {
-        var userId          = authService.decode(jwt);
-        var userIsMember    = false;
+        var userId              = authService.decode(jwt);
+        var userIsMember        = false;
 
         try {
             for(Member member : chatMongoService.listMembers(chatId)) {
@@ -128,6 +137,7 @@ public class ChatService implements ChatRepository {
                     .state(MessageStates.SENT)
                     .build();
 
+            notificationService.notify(chatId.toString());
             return chatMongoService.sendMessage(chatId, message);
         } catch(Exception e) {
             throw new ChatAPIException(ServerStatus.MESSAGE_NOT_SENT);

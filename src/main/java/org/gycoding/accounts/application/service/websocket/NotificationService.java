@@ -10,6 +10,6 @@ public class NotificationService {
     private SimpMessagingTemplate template;
 
     public void notify(String message) {
-        template.convertAndSend("/topic/messages", message);
+        template.convertAndSend("/messages", message);
     }
 }
