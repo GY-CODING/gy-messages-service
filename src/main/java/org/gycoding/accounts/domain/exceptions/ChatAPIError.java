@@ -1,10 +1,10 @@
-package org.gycoding.accounts.domain.enums;
+package org.gycoding.accounts.domain.exceptions;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
-public enum ServerStatus {
+public enum ChatAPIError {
     HOME_NOT_FOUND("API reference not found.", HttpStatus.NOT_FOUND),
 
     CHAT_NOT_FOUND("Specified chat was not found.", HttpStatus.NOT_FOUND),
@@ -28,7 +28,7 @@ public enum ServerStatus {
     public final String message;
     public final HttpStatus status;
 
-    private ServerStatus(String message, HttpStatus status) {
+    private ChatAPIError(String message, HttpStatus status) {
         this.code       = this.name();
         this.message    = message;
         this.status     = status;

@@ -2,10 +2,9 @@ package org.gycoding.accounts.infrastructure.api;
 
 import org.gycoding.accounts.application.service.auth.AuthService;
 import org.gycoding.accounts.application.service.chat.ChatService;
-import org.gycoding.accounts.application.service.websocket.NotificationService;
-import org.gycoding.accounts.domain.exceptions.ChatAPIException;
 import org.gycoding.accounts.infrastructure.dto.ChatRQDTO;
 import org.gycoding.accounts.infrastructure.dto.MessageRQDTO;
+import org.gycoding.exceptions.model.APIException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class ChatController {
     public ResponseEntity<?> create(
             @RequestBody ChatRQDTO chatRQDTO,
             @RequestHeader String jwt
-    ) throws ChatAPIException {
+    ) throws APIException {
         return ResponseEntity.ok(chatService.create(chatRQDTO, jwt).toString());
     }
 
@@ -33,7 +32,7 @@ public class ChatController {
     public ResponseEntity<?> delete(
             @PathVariable UUID chatId,
             @RequestHeader String jwt
-    ) throws ChatAPIException {
+    ) throws APIException {
         chatService.delete(chatId, jwt);
         return ResponseEntity.noContent().build();
     }
@@ -42,7 +41,7 @@ public class ChatController {
     public ResponseEntity<?> leave(
             @PathVariable UUID chatId,
             @RequestHeader String jwt
-    ) throws ChatAPIException {
+    ) throws APIException {
         chatService.leave(chatId, jwt);
         return ResponseEntity.noContent().build();
     }
@@ -52,7 +51,7 @@ public class ChatController {
             @PathVariable UUID chatId,
             @RequestBody MessageRQDTO messageRQDTO,
             @RequestHeader String jwt
-    ) throws ChatAPIException {
+    ) throws APIException {
         return ResponseEntity.ok(chatService.sendMessage(chatId, messageRQDTO.message(), jwt));
     }
 
@@ -60,7 +59,7 @@ public class ChatController {
     public ResponseEntity<?> getChat(
             @PathVariable UUID chatId,
             @RequestHeader String jwt
-    ) throws ChatAPIException {
+    ) throws APIException {
         return ResponseEntity.ok(chatService.getChat(chatId, authService.decode(jwt)).toString());
     }
 
@@ -68,7 +67,7 @@ public class ChatController {
     public ResponseEntity<?> listMembers(
             @PathVariable UUID chatId,
             @RequestHeader String jwt
-    ) throws ChatAPIException {
+    ) throws APIException {
         return ResponseEntity.ok(chatService.listMembers(chatId, jwt).toString());
     }
 
@@ -76,7 +75,7 @@ public class ChatController {
     public ResponseEntity<?> addMember(
             @PathVariable UUID chatId,
             @RequestHeader String jwt
-    ) throws ChatAPIException {
+    ) throws APIException {
         chatService.addMember(chatId, jwt);
         return ResponseEntity.noContent().build();
     }
@@ -85,14 +84,14 @@ public class ChatController {
     public ResponseEntity<?> listMessages(
             @PathVariable UUID chatId,
             @RequestHeader String jwt
-    ) throws ChatAPIException {
+    ) throws APIException {
         return ResponseEntity.ok(chatService.listMessages(chatId, jwt).toString());
     }
 
     @GetMapping("/chats/list")
     public ResponseEntity<?> listChats(
             @RequestHeader String jwt
-    ) throws ChatAPIException {
+    ) throws APIException {
         return ResponseEntity.ok(chatService.listChats(jwt).toString());
     }
 }
