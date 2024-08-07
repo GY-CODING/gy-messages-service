@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.gycoding</groupId>
 	<artifactId>gy-message</artifactId>
-	<version>1.1.0</version>
+	<version>1.1.1</version>
 	<name>gy-messages-service</name>
 	<description>GY Messages is the official chat service of every GYCODING product.</description>
 	<properties>
@@ -89,6 +89,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-websocket</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.gycoding</groupId>
+			<artifactId>spring-exceptions</artifactId>
+			<version>1.1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -123,36 +129,6 @@
 							<version>1.18.20</version>
 						</path>
 					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.jetbrains.dokka</groupId>
-				<artifactId>dokka-maven-plugin</artifactId>
-				<version>1.9.20</version>
-				<executions>
-					<execution>
-						<phase>pre-site</phase>
-						<goals>
-							<goal>dokka</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<skip>false</skip>
-					<moduleName>GY Messages</moduleName>
-					<outputDir>./src/main/resources/static/docs</outputDir>
-					<cacheRoot>default</cacheRoot>
-					<offlineMode>false</offlineMode>
-					<samples>
-						<dir>src/test/samples</dir>
-					</samples>
-					<suppressObviousFunctions>false</suppressObviousFunctions>
-					<suppressInheritedMembers>true</suppressInheritedMembers>
-					<jdkVersion>17</jdkVersion>
-					<skipDeprecated>false</skipDeprecated>
-					<reportUndocumented>true</reportUndocumented>
-					<skipEmptyPackages>true</skipEmptyPackages>
 				</configuration>
 			</plugin>
 		</plugins>

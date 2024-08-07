@@ -1,6 +1,6 @@
 package org.gycoding.accounts.infrastructure.api;
 
-import org.gycoding.accounts.domain.enums.ServerStatus;
+import org.gycoding.accounts.domain.exceptions.ChatAPIError;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class HomeController {
         try {
             return ResponseEntity.ok(new String(Files.readAllBytes(Paths.get(resource.getURI()))));
         } catch (IOException e) {
-            return ResponseEntity.status(ServerStatus.HOME_NOT_FOUND.status).body(ServerStatus.HOME_NOT_FOUND.toString());
+            return ResponseEntity.status(ChatAPIError.HOME_NOT_FOUND.status).body(ChatAPIError.HOME_NOT_FOUND.toString());
         }
     }
 }

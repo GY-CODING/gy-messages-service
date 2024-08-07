@@ -1,9 +1,9 @@
 package org.gycoding.accounts.infrastructure.external.gyaccounts;
 
-import org.gycoding.accounts.domain.enums.ServerStatus;
-import org.gycoding.accounts.domain.exceptions.ChatAPIException;
+import org.gycoding.accounts.domain.exceptions.ChatAPIError;
 import org.gycoding.accounts.infrastructure.dto.GYAccountsChatDTO;
 import org.gycoding.accounts.infrastructure.external.unirest.UnirestFacade;
+import org.gycoding.exceptions.model.APIException;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
@@ -34,7 +34,7 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
     }
 
     @Override
-    public List<GYAccountsChatDTO> listChats(String jwt) throws ChatAPIException {
+    public List<GYAccountsChatDTO> listChats(String jwt) throws APIException {
         var response = UnirestFacade.get(URL + "/auth/messages/chat/list", jwt);
         var parser = new JSONParser();
         var chats = new ArrayList<GYAccountsChatDTO>();
@@ -56,7 +56,11 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
 
             return chats;
         } catch (ParseException e) {
-            throw new ChatAPIException(ServerStatus.JSON_COULD_NOT_BE_PARSED);
+            throw new APIException(
+                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getCode(),
+                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getMessage(),
+                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getStatus()
+            );
         }
     }
 }

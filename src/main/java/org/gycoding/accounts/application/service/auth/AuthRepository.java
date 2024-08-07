@@ -1,12 +1,7 @@
 package org.gycoding.accounts.application.service.auth;
 
-import org.gycoding.accounts.domain.entities.EntityChat;
-import org.gycoding.accounts.domain.entities.Message;
-import org.gycoding.accounts.domain.exceptions.ChatAPIException;
-import org.gycoding.accounts.infrastructure.dto.ChatRQDTO;
-
-import java.util.List;
+import org.gycoding.exceptions.model.APIException;
 
 public interface AuthRepository {
-    String decode(String jwt) throws ChatAPIException;
+    String decode(String jwt) throws APIException;
 }
