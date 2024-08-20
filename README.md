@@ -1,6 +1,6 @@
 # GY Messages
 
-![version](https://img.shields.io/badge/version-1.0.0-gold?style=for-the-badge)
+![version](https://img.shields.io/badge/version-1.1.1-gold?style=for-the-badge)
 [![developer](https://img.shields.io/badge/developed-GYCODING-B833FF?style=for-the-badge)](https://gycoding.com)
 [![referecce](https://img.shields.io/badge/reference-api_reference-lightgrey?style=for-the-badge)](https://decent-maddalena-gydevelop-891db581.koyeb.app/)
 
