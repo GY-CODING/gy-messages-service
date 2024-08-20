@@ -6,7 +6,6 @@ import kong.unirest.Unirest;
 import java.util.Map;
 
 public class UnirestFacade {
-
     public static HttpResponse<String> get(String url) {
         return Unirest.get(url)
                 .header("content-type", "application/json")
