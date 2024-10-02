@@ -11,5 +11,5 @@ import java.util.UUID;
 public interface GYAccountsFacade {
     void addChat(String token, String chatId, Boolean isAdmin);
     void removeChat(String token, UUID chatId);
-    List<GYAccountsChatDTO> listChats(String token) throws APIException;
+    List<GYAccountsChatDTO> listChats(String token) throws Exception;
 }

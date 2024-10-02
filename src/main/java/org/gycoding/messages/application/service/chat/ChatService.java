@@ -11,6 +11,7 @@ import org.gycoding.messages.infrastructure.dto.ChatRQDTO;
 import org.gycoding.messages.infrastructure.external.database.service.ChatMongoService;
 import org.gycoding.messages.infrastructure.external.gyaccounts.GYAccountsFacadeImpl;
 import org.gycoding.exceptions.model.APIException;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -302,11 +303,11 @@ public class ChatService implements ChatRepository {
     public List<EntityChat> listChats(String token) throws APIException {
         try {
             return chatMongoService.listChats(gyAccountsFacade.listChats(token));
-        } catch(Exception e) {
+        } catch(ParseException | ClassCastException e) {
             throw new APIException(
-                    ChatAPIError.CHAT_NOT_FOUND.getCode(),
-                    ChatAPIError.CHAT_NOT_FOUND.getMessage(),
-                    ChatAPIError.CHAT_NOT_FOUND.getStatus()
+                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getCode(),
+                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getMessage(),
+                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getStatus()
             );
         }
     }

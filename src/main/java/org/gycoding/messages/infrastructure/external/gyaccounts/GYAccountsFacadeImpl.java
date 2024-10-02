@@ -1,5 +1,6 @@
 package org.gycoding.messages.infrastructure.external.gyaccounts;
 
+import kong.unirest.HttpResponse;
 import org.gycoding.messages.domain.exceptions.ChatAPIError;
 import org.gycoding.messages.infrastructure.dto.GYAccountsChatDTO;
 import org.gycoding.messages.infrastructure.external.unirest.UnirestFacade;
@@ -46,38 +47,32 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
     }
 
     @Override
-    public List<GYAccountsChatDTO> listChats(String token) throws APIException {
+    public List<GYAccountsChatDTO> listChats(String token) throws ParseException, ClassCastException {
         final var headers = new HashMap<String, String>();
 
-        headers.put("token", "Bearer " + token);
+        headers.put("token", token);
         headers.put("Content-Type", "application/json");
 
-        var response = UnirestFacade.get(URL + "/auth/messages/chat/list", headers);
+        HttpResponse<String> response = null;
         var parser = new JSONParser();
         var chats = new ArrayList<GYAccountsChatDTO>();
 
-        try {
-            for (Object obj : (JSONArray) parser.parse(response.getBody())) {
-                JSONObject jsonObject   = (JSONObject) obj;
+        response = UnirestFacade.get(URL + "/auth/messages/chat/list", headers);
 
-                String chatId           = (String) jsonObject.get("chatId");
-                boolean name            = (boolean) jsonObject.get("isAdmin");
+        for (Object obj : (JSONArray) parser.parse(response.getBody())) {
+            JSONObject jsonObject   = (JSONObject) obj;
 
-                var chat = GYAccountsChatDTO.builder()
-                        .chatId(chatId)
-                        .admin(name)
-                        .build();
+            String chatId           = (String) jsonObject.get("chatId");
+            boolean name            = (boolean) jsonObject.get("isAdmin");
 
-                chats.add(chat);
-            }
+            var chat = GYAccountsChatDTO.builder()
+                    .chatId(chatId)
+                    .admin(name)
+                    .build();
 
-            return chats;
-        } catch (ParseException e) {
-            throw new APIException(
-                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getCode(),
-                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getMessage(),
-                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getStatus()
-            );
+            chats.add(chat);
         }
+
+        return chats;
     }
 }

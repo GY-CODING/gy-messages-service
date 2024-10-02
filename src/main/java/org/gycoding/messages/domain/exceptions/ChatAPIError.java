@@ -14,6 +14,7 @@ public enum ChatAPIError {
 
     INVALID_AUTH("Invalid authentication token.", HttpStatus.UNAUTHORIZED),
     METADATA_NOT_FOUND("Metadata not found.", HttpStatus.NOT_FOUND),
+    METADATA_CHATS_NOT_FOUND("Chats metadata not found.", HttpStatus.NOT_FOUND),
     USER_NOT_ADMIN("User is not the admin of this chat.", HttpStatus.FORBIDDEN),
     USER_NOT_MEMBER("User is not a member of this chat.", HttpStatus.CONFLICT),
     USER_ALREADY_MEMBER("User is already a member of this chat.", HttpStatus.CONFLICT),
