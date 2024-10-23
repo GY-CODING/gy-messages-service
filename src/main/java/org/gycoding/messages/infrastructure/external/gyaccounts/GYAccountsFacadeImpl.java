@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @Service
 public class GYAccountsFacadeImpl implements GYAccountsFacade {
-    private @Value("${gycoding.accounts.url}") String URL;
+    private @Value("${gy.accounts.url}") String URL;
 
     @Override
     public void addChat(String token, String chatId, Boolean isAdmin) {
