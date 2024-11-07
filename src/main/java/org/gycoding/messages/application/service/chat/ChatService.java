@@ -90,7 +90,7 @@ public class ChatService implements ChatRepository {
             }
 
             for(Member member : chatMongoService.listMembers(chatId)) {
-                gyAccountsFacade.removeChat(member.userId(), chatId);
+                gyAccountsFacade.removeChat(token, chatId);
             }
 
             notificationService.notify(chatId.toString());
@@ -304,6 +304,7 @@ public class ChatService implements ChatRepository {
         try {
             return chatMongoService.listChats(gyAccountsFacade.listChats(token));
         } catch(ParseException | ClassCastException e) {
+            System.err.println(e.getMessage());
             throw new APIException(
                     ChatAPIError.JSON_COULD_NOT_BE_PARSED.getCode(),
                     ChatAPIError.JSON_COULD_NOT_BE_PARSED.getMessage(),

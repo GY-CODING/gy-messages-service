@@ -25,7 +25,7 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
     public void addChat(String token, String chatId, Boolean isAdmin) {
         final var headers = new HashMap<String, String>();
 
-        headers.put("token", "Bearer " + token);
+        headers.put("token", token);
         headers.put("Content-Type", "application/json");
 
         var chat = GYAccountsChatDTO.builder()
@@ -33,17 +33,17 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
                 .admin(isAdmin)
                 .build();
 
-        UnirestFacade.put(URL + "/auth/messages/chat/add", headers, chat.toString());
+        UnirestFacade.put(URL + "/messages/chat/add", headers, chat.toString());
     }
 
     @Override
     public void removeChat(String token, UUID chatId) {
         final var headers = new HashMap<String, String>();
 
-        headers.put("token", "Bearer " + token);
+        headers.put("token", token);
         headers.put("Content-Type", "application/json");
 
-        UnirestFacade.delete(URL + "/auth/messages/chat/remove", headers, String.format("{\"chatId\": \"%s\"}", chatId.toString()));
+        UnirestFacade.delete(URL + "/messages/chat/remove", headers, String.format("{\"chatId\": \"%s\"}", chatId.toString()));
     }
 
     @Override
@@ -57,7 +57,7 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
         var parser = new JSONParser();
         var chats = new ArrayList<GYAccountsChatDTO>();
 
-        response = UnirestFacade.get(URL + "/auth/messages/chat/list", headers);
+        response = UnirestFacade.get(URL + "/messages/chat/list", headers);
 
         for (Object obj : (JSONArray) parser.parse(response.getBody())) {
             JSONObject jsonObject   = (JSONObject) obj;
