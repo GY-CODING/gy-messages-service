@@ -53,9 +53,9 @@ public class ChatService implements ChatRepository {
             return chatMongoService.create(chat);
         } catch(Exception e) {
             throw new APIException(
-                    ChatAPIError.CHAT_EXISTS.getCode(),
-                    ChatAPIError.CHAT_EXISTS.getMessage(),
-                    ChatAPIError.CHAT_EXISTS.getStatus()
+                    ChatAPIError.CONFLICT.getCode(),
+                    ChatAPIError.CONFLICT.getMessage(),
+                    ChatAPIError.CONFLICT.getStatus()
             );
         }
     }
@@ -69,9 +69,9 @@ public class ChatService implements ChatRepository {
             for(Member member : chatMongoService.listMembers(chatId)) {
                 if(!this.getChat(chatId, token).owner().equals(userId)) {
                     throw new APIException(
-                            ChatAPIError.USER_NOT_ADMIN.getCode(),
-                            ChatAPIError.USER_NOT_ADMIN.getMessage(),
-                            ChatAPIError.USER_NOT_ADMIN.getStatus()
+                            ChatAPIError.FORBIDDEN.getCode(),
+                            ChatAPIError.FORBIDDEN.getMessage(),
+                            ChatAPIError.FORBIDDEN.getStatus()
                     );
                 }
 
@@ -83,9 +83,9 @@ public class ChatService implements ChatRepository {
 
             if(!userIsMember) {
                 throw new APIException(
-                        ChatAPIError.USER_NOT_MEMBER.getCode(),
-                        ChatAPIError.USER_NOT_MEMBER.getMessage(),
-                        ChatAPIError.USER_NOT_MEMBER.getStatus()
+                        ChatAPIError.FORBIDDEN.getCode(),
+                        ChatAPIError.FORBIDDEN.getMessage(),
+                        ChatAPIError.FORBIDDEN.getStatus()
                 );
             }
 
@@ -97,9 +97,9 @@ public class ChatService implements ChatRepository {
             chatMongoService.delete(chatId);
         } catch(NullPointerException e) {
             throw new APIException(
-                    ChatAPIError.CHAT_NOT_FOUND.getCode(),
-                    ChatAPIError.CHAT_NOT_FOUND.getMessage(),
-                    ChatAPIError.CHAT_NOT_FOUND.getStatus()
+                    ChatAPIError.RESOURCE_NOT_FOUND.getCode(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getMessage(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getStatus()
             );
         }
     }
@@ -119,9 +119,9 @@ public class ChatService implements ChatRepository {
 
             if(memberFound == null) {
                 throw new APIException(
-                        ChatAPIError.USER_NOT_MEMBER.getCode(),
-                        ChatAPIError.USER_NOT_MEMBER.getMessage(),
-                        ChatAPIError.USER_NOT_MEMBER.getStatus()
+                        ChatAPIError.FORBIDDEN.getCode(),
+                        ChatAPIError.FORBIDDEN.getMessage(),
+                        ChatAPIError.FORBIDDEN.getStatus()
                 );
             }
 
@@ -130,9 +130,9 @@ public class ChatService implements ChatRepository {
             chatMongoService.removeMember(chatId, memberFound);
         } catch(Exception e) {
             throw new APIException(
-                    ChatAPIError.CHAT_NOT_FOUND.getCode(),
-                    ChatAPIError.CHAT_NOT_FOUND.getMessage(),
-                    ChatAPIError.CHAT_NOT_FOUND.getStatus()
+                    ChatAPIError.RESOURCE_NOT_FOUND.getCode(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getMessage(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getStatus()
             );
         }
     }
@@ -152,9 +152,9 @@ public class ChatService implements ChatRepository {
 
             if(!userIsMember) {
                 throw new APIException(
-                        ChatAPIError.USER_NOT_MEMBER.getCode(),
-                        ChatAPIError.USER_NOT_MEMBER.getMessage(),
-                        ChatAPIError.USER_NOT_MEMBER.getStatus()
+                        ChatAPIError.FORBIDDEN.getCode(),
+                        ChatAPIError.FORBIDDEN.getMessage(),
+                        ChatAPIError.FORBIDDEN.getStatus()
                 );
             }
 
@@ -167,11 +167,11 @@ public class ChatService implements ChatRepository {
 
             notificationService.notify(chatId.toString());
             return chatMongoService.sendMessage(chatId, message);
-        } catch(Exception e) {
+        } catch(NullPointerException e) {
             throw new APIException(
-                    ChatAPIError.MESSAGE_NOT_SENT.getCode(),
-                    ChatAPIError.MESSAGE_NOT_SENT.getMessage(),
-                    ChatAPIError.MESSAGE_NOT_SENT.getStatus()
+                    ChatAPIError.CONFLICT.getCode(),
+                    ChatAPIError.CONFLICT.getMessage(),
+                    ChatAPIError.CONFLICT.getStatus()
             );
         }
     }
@@ -191,18 +191,18 @@ public class ChatService implements ChatRepository {
 
             if(!userIsMember) {
                 throw new APIException(
-                        ChatAPIError.USER_NOT_MEMBER.getCode(),
-                        ChatAPIError.USER_NOT_MEMBER.getMessage(),
-                        ChatAPIError.USER_NOT_MEMBER.getStatus()
+                        ChatAPIError.FORBIDDEN.getCode(),
+                        ChatAPIError.FORBIDDEN.getMessage(),
+                        ChatAPIError.FORBIDDEN.getStatus()
                 );
             }
 
             return chatMongoService.getChat(chatId);
         } catch(Exception e) {
             throw new APIException(
-                    ChatAPIError.CHAT_NOT_FOUND.getCode(),
-                    ChatAPIError.CHAT_NOT_FOUND.getMessage(),
-                    ChatAPIError.CHAT_NOT_FOUND.getStatus()
+                    ChatAPIError.RESOURCE_NOT_FOUND.getCode(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getMessage(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getStatus()
             );
         }
     }
@@ -222,18 +222,18 @@ public class ChatService implements ChatRepository {
 
             if(!userIsMember) {
                 throw new APIException(
-                        ChatAPIError.USER_NOT_MEMBER.getCode(),
-                        ChatAPIError.USER_NOT_MEMBER.getMessage(),
-                        ChatAPIError.USER_NOT_MEMBER.getStatus()
+                        ChatAPIError.FORBIDDEN.getCode(),
+                        ChatAPIError.FORBIDDEN.getMessage(),
+                        ChatAPIError.FORBIDDEN.getStatus()
                 );
             }
 
             return chatMongoService.listMessages(chatId);
         } catch(Exception e) {
             throw new APIException(
-                    ChatAPIError.CHAT_NOT_FOUND.getCode(),
-                    ChatAPIError.CHAT_NOT_FOUND.getMessage(),
-                    ChatAPIError.CHAT_NOT_FOUND.getStatus()
+                    ChatAPIError.RESOURCE_NOT_FOUND.getCode(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getMessage(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getStatus()
             );
         }
     }
@@ -246,9 +246,9 @@ public class ChatService implements ChatRepository {
             for(Member member : chatMongoService.listMembers(chatId)) {
                 if(member.userId().equals(userId)) {
                     throw new APIException(
-                            ChatAPIError.USER_ALREADY_MEMBER.getCode(),
-                            ChatAPIError.USER_ALREADY_MEMBER.getMessage(),
-                            ChatAPIError.USER_ALREADY_MEMBER.getStatus()
+                            ChatAPIError.CONFLICT.getCode(),
+                            ChatAPIError.CONFLICT.getMessage(),
+                            ChatAPIError.CONFLICT.getStatus()
                     );
                 }
             }
@@ -261,9 +261,9 @@ public class ChatService implements ChatRepository {
             chatMongoService.addMember(chatId, member);
         } catch(Exception e) {
             throw new APIException(
-                    ChatAPIError.CHAT_NOT_FOUND.getCode(),
-                    ChatAPIError.CHAT_NOT_FOUND.getMessage(),
-                    ChatAPIError.CHAT_NOT_FOUND.getStatus()
+                    ChatAPIError.RESOURCE_NOT_FOUND.getCode(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getMessage(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getStatus()
             );
         }
     }
@@ -283,18 +283,18 @@ public class ChatService implements ChatRepository {
 
             if(!userIsMember) {
                 throw new APIException(
-                        ChatAPIError.USER_NOT_MEMBER.getCode(),
-                        ChatAPIError.USER_NOT_MEMBER.getMessage(),
-                        ChatAPIError.USER_NOT_MEMBER.getStatus()
+                        ChatAPIError.FORBIDDEN.getCode(),
+                        ChatAPIError.FORBIDDEN.getMessage(),
+                        ChatAPIError.FORBIDDEN.getStatus()
                 );
             }
 
             return chatMongoService.listMembers(chatId);
         } catch(Exception e) {
             throw new APIException(
-                    ChatAPIError.CHAT_NOT_FOUND.getCode(),
-                    ChatAPIError.CHAT_NOT_FOUND.getMessage(),
-                    ChatAPIError.CHAT_NOT_FOUND.getStatus()
+                    ChatAPIError.RESOURCE_NOT_FOUND.getCode(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getMessage(),
+                    ChatAPIError.RESOURCE_NOT_FOUND.getStatus()
             );
         }
     }
@@ -304,11 +304,10 @@ public class ChatService implements ChatRepository {
         try {
             return chatMongoService.listChats(gyAccountsFacade.listChats(token));
         } catch(ParseException | ClassCastException e) {
-            System.err.println(e.getMessage());
             throw new APIException(
-                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getCode(),
-                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getMessage(),
-                    ChatAPIError.JSON_COULD_NOT_BE_PARSED.getStatus()
+                    ChatAPIError.DB_ERROR.getCode(),
+                    ChatAPIError.DB_ERROR.getMessage(),
+                    ChatAPIError.DB_ERROR.getStatus()
             );
         }
     }

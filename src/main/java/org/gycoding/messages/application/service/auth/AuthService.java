@@ -17,9 +17,9 @@ public class AuthService implements AuthRepository {
             return authFacade.decode(token);
         } catch(Exception e) {
             throw new APIException(
-                    ChatAPIError.INVALID_AUTH.getCode(),
-                    ChatAPIError.INVALID_AUTH.getMessage(),
-                    ChatAPIError.INVALID_AUTH.getStatus()
+                    ChatAPIError.SERVER_ERROR.getCode(),
+                    ChatAPIError.SERVER_ERROR.getMessage(),
+                    ChatAPIError.SERVER_ERROR.getStatus()
             );
         }
     }
