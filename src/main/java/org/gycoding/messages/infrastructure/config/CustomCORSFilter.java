@@ -17,11 +17,15 @@ public class CustomCORSFilter extends OncePerRequestFilter {
     @Value("${allowed.origin}")
     private String allowedOrigin;
 
+    @Value("${allowed.apiKey}")
+    private String allowedApiKey;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String origin = request.getHeader("Host");
+        String apiKey = request.getHeader("x-api-key");
 
-        if (origin != null && origin.startsWith(allowedOrigin)) {
+        if ((origin != null && origin.startsWith(allowedOrigin)) || (apiKey != null && apiKey.equals(allowedApiKey))) {
             filterChain.doFilter(request, response);
         } else {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
