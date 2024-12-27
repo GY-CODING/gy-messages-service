@@ -1,0 +1,13 @@
+name: Deploy to Koyeb
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+     uses: GY-CODING/.github/.github/workflows/koyeb-deploy.yml@master
+     secrets: inherit
+     with:
+       serviceID: "f4b9045b-2dad-4951-8aff-2fe3a5a56547"
