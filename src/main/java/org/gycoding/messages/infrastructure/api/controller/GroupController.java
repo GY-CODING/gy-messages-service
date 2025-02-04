@@ -1,5 +1,6 @@
 package org.gycoding.messages.infrastructure.api.controller;
 
+import lombok.AllArgsConstructor;
 import org.gycoding.messages.application.service.group.GroupService;
 import org.gycoding.messages.infrastructure.api.dto.in.GroupRQDTO;
 import org.gycoding.messages.infrastructure.api.dto.in.MessageRQDTO;
@@ -13,15 +14,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/group")
 public class GroupController {
-    @Qualifier("groupServiceImpl")
-    @Autowired
-    private GroupService service = null;
+    private final GroupService service;
 
-    @Qualifier("groupControllerMapperImpl")
-    @Autowired
-    private GroupControllerMapper mapper;
+    private final GroupControllerMapper mapper;
 
     @GetMapping("/{chatId}")
     public ResponseEntity<?> getChat(

@@ -1,5 +1,6 @@
 package org.gycoding.messages.application.service.group;
 
+import lombok.AllArgsConstructor;
 import org.gycoding.exceptions.model.APIException;
 import org.gycoding.messages.application.dto.in.group.GroupIDTO;
 import org.gycoding.messages.application.dto.out.MessageODTO;
@@ -22,21 +23,15 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class GroupServiceImpl implements GroupService {
-    @Qualifier("groupRepositoryImpl")
-    @Autowired
-    private GroupRepository repository;
+    private final GroupRepository repository;
 
-    @Qualifier("groupServiceMapperImpl")
-    @Autowired
-    private GroupServiceMapper mapper;
+    private final GroupServiceMapper mapper;
 
-    @Qualifier("GYAccountsFacadeImpl")
-    @Autowired
-    private GYAccountsFacade gyAccountsFacade;
+    private final GYAccountsFacade gyAccountsFacade;
 
-    @Autowired
-    private NotificationFacadeImpl gyNotificationsFacade;
+    private final NotificationFacadeImpl gyNotificationsFacade;
 
     @Override
     public GroupODTO get(String userId, UUID chatId) throws APIException {

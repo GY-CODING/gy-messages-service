@@ -1,5 +1,6 @@
 package org.gycoding.messages.infrastructure.external.database.repository.impl;
 
+import lombok.AllArgsConstructor;
 import org.gycoding.messages.domain.model.group.GroupMO;
 import org.gycoding.messages.domain.model.group.MemberMO;
 import org.gycoding.messages.domain.model.MessageMO;
@@ -15,13 +16,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class GroupRepositoryImpl implements GroupRepository {
-    @Autowired
-    private GroupMongoRepository repository;
+    private final GroupMongoRepository repository;
 
-    @Qualifier("groupDatabaseMapperImpl")
-    @Autowired
-    private GroupDatabaseMapper mapper;
+    private final GroupDatabaseMapper mapper;
 
     @Override
     public Optional<GroupMO> save(GroupMO chat) {
