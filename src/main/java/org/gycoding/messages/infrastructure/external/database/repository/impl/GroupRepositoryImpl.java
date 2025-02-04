@@ -66,6 +66,11 @@ public class GroupRepositoryImpl implements GroupRepository {
         var chat = repository.findByChatId(chatId.toString()).get();
         chat.members().remove(mapper.toEntity(memberMO));
 
+        if(chat.members().isEmpty()) {
+            repository.delete(chat);
+            return;
+        }
+
         repository.save(chat);
     }
 
