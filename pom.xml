@@ -93,13 +93,20 @@
 		<dependency>
 			<groupId>org.gycoding</groupId>
 			<artifactId>spring-exceptions</artifactId>
-			<version>1.1.5</version>
+			<version>1.1.6</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.gycoding</groupId>
-			<artifactId>spring-logs</artifactId>
-			<version>1.1.5</version>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-mapstruct-binding</artifactId>
+			<version>0.2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.5.5.Final</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
@@ -132,7 +139,12 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.20</version>
+							<version>1.18.24</version>
+						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.5.5.Final</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>

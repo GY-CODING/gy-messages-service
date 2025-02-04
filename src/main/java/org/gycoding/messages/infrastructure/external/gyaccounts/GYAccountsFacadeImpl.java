@@ -1,78 +1,43 @@
 package org.gycoding.messages.infrastructure.external.gyaccounts;
 
-import kong.unirest.HttpResponse;
-import org.gycoding.messages.domain.exceptions.ChatAPIError;
-import org.gycoding.messages.infrastructure.dto.GYAccountsChatDTO;
+import org.gycoding.messages.domain.repository.GYAccountsFacade;
 import org.gycoding.messages.infrastructure.external.unirest.UnirestFacade;
-import org.gycoding.exceptions.model.APIException;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 @Service
 public class GYAccountsFacadeImpl implements GYAccountsFacade {
     private @Value("${gy.accounts.url}") String URL;
+    private @Value("${allowed.apiKey}") String API_KEY;
 
     @Override
-    public void addChat(String token, String chatId, Boolean isAdmin) {
+    public void addChat(String userId, UUID chatId, Boolean isAdmin) {
         final var headers = new HashMap<String, String>();
 
-        headers.put("token", token);
+        headers.put("x-user-id", userId);
+        headers.put("x-api-key", API_KEY);
         headers.put("Content-Type", "application/json");
 
-        var chat = GYAccountsChatDTO.builder()
-                .chatId(chatId)
-                .admin(isAdmin)
-                .build();
-
-        UnirestFacade.put(URL + "/messages/chat/add", headers, chat.toString());
+        UnirestFacade.patch(
+                URL + "/messages/chats/add",
+                headers,
+                String.format("{\"chatId\": \"%s\", \"isAdmin\": %s}", chatId.toString(), isAdmin.toString())
+        );
     }
 
     @Override
-    public void removeChat(String token, UUID chatId) {
+    public void removeChat(String userId, UUID chatId) {
         final var headers = new HashMap<String, String>();
 
-        headers.put("token", token);
-        headers.put("Content-Type", "application/json");
+        headers.put("x-user-id", userId);
+        headers.put("x-api-key", API_KEY);
 
-        UnirestFacade.delete(URL + "/messages/chat/remove", headers, String.format("{\"chatId\": \"%s\"}", chatId.toString()));
-    }
-
-    @Override
-    public List<GYAccountsChatDTO> listChats(String token) throws ParseException, ClassCastException {
-        final var headers = new HashMap<String, String>();
-
-        headers.put("token", token);
-        headers.put("Content-Type", "application/json");
-
-        HttpResponse<String> response = null;
-        var parser = new JSONParser();
-        var chats = new ArrayList<GYAccountsChatDTO>();
-
-        response = UnirestFacade.get(URL + "/messages/chat/list", headers);
-
-        for (Object obj : (JSONArray) parser.parse(response.getBody())) {
-            JSONObject jsonObject   = (JSONObject) obj;
-
-            String chatId           = (String) jsonObject.get("chatId");
-            boolean name            = (boolean) jsonObject.get("isAdmin");
-
-            var chat = GYAccountsChatDTO.builder()
-                    .chatId(chatId)
-                    .admin(name)
-                    .build();
-
-            chats.add(chat);
-        }
-
-        return chats;
+        UnirestFacade.delete(
+                URL + String.format("/messages/chats?chatId=%s", chatId.toString()),
+                headers
+        );
     }
 }

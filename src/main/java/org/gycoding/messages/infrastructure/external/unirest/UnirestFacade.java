@@ -45,6 +45,13 @@ public class UnirestFacade {
                 .asString();
     }
 
+    public static HttpResponse<String> patch(String url, Map<String, String> headers, String body) {
+        return Unirest.patch(url)
+                .headers(headers)
+                .body(body)
+                .asString();
+    }
+
     public static HttpResponse<String> delete(String url, Map<String, String> headers) {
         return Unirest.delete(url)
                 .headers(headers)
