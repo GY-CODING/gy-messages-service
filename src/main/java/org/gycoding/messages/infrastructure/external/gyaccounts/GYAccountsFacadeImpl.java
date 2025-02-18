@@ -3,9 +3,11 @@ package org.gycoding.messages.infrastructure.external.gyaccounts;
 import kong.unirest.HttpResponse;
 import org.gycoding.messages.domain.repository.GYAccountsFacade;
 import org.gycoding.messages.infrastructure.external.unirest.UnirestFacade;
+import org.gycoding.messages.shared.utils.logger.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -35,12 +37,16 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
         var parser = new JSONParser();
         var chats = new ArrayList<UUID>();
 
-        for (Object obj : (JSONArray) parser.parse(response.getBody())) {
-            JSONObject jsonObject   = (JSONObject) obj;
+        try {
+            for (Object obj : (JSONArray) parser.parse(response.getBody())) {
+                JSONObject jsonObject   = (JSONObject) obj;
 
-            String chatId           = (String) jsonObject.get("chatId");
+                String chatId           = (String) jsonObject.get("chatId");
 
-            chats.add(UUID.fromString(chatId));
+                chats.add(UUID.fromString(chatId));
+            }
+        } catch (ParseException e) {
+            Logger.error("An error has occured while parsing chat list from metadata response: " + e.getMessage(), e);
         }
 
         return chats;
