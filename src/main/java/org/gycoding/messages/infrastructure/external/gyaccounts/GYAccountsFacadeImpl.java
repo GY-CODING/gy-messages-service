@@ -28,12 +28,10 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
         headers.put("x-user-id", userId);
         headers.put("x-api-key", API_KEY);
 
-        UnirestFacade.get(
+        HttpResponse<String> response = UnirestFacade.get(
                 URL + "/messages/chats",
                 headers
         );
-
-        HttpResponse<String> response = null;
         var parser = new JSONParser();
         var chats = new ArrayList<UUID>();
 
