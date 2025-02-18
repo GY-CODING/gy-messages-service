@@ -1,13 +1,11 @@
 package org.gycoding.messages.infrastructure.api.controller;
 
 import lombok.AllArgsConstructor;
+import org.gycoding.exceptions.model.APIException;
 import org.gycoding.messages.application.service.group.GroupService;
 import org.gycoding.messages.infrastructure.api.dto.in.GroupRQDTO;
 import org.gycoding.messages.infrastructure.api.dto.in.MessageRQDTO;
-import org.gycoding.exceptions.model.APIException;
 import org.gycoding.messages.infrastructure.api.mapper.GroupControllerMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +25,13 @@ public class GroupController {
             @RequestHeader("x-user-id") String userId
     ) throws APIException {
         return ResponseEntity.ok(mapper.toRSDTO(service.get(userId, chatId)));
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<?> listChats(
+            @RequestHeader("x-user-id") String userId
+    ) throws APIException {
+        return ResponseEntity.ok(service.list(userId).stream().map(mapper::toRSDTO).toList());
     }
 
     @PostMapping("")

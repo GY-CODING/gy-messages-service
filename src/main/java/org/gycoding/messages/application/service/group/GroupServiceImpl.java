@@ -68,6 +68,16 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public List<GroupODTO> list(String userId) throws APIException {
+        final var chatIDs = gyAccountsFacade.listChats(userId);
+
+        return chatIDs.stream()
+                .map(chatId -> repository.get(chatId).orElse(null))
+                .map(mapper::toODTO)
+                .toList();
+    }
+
+    @Override
     public GroupODTO create(String userId, GroupIDTO group) throws APIException {
         final var groupChat = mapper.toMO(group);
 

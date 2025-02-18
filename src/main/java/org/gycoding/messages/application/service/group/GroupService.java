@@ -1,11 +1,10 @@
 package org.gycoding.messages.application.service.group;
 
+import org.gycoding.exceptions.model.APIException;
 import org.gycoding.messages.application.dto.in.group.GroupIDTO;
 import org.gycoding.messages.application.dto.out.MessageODTO;
 import org.gycoding.messages.application.dto.out.group.GroupODTO;
 import org.gycoding.messages.application.dto.out.group.MemberODTO;
-import org.gycoding.messages.infrastructure.api.dto.in.GroupRQDTO;
-import org.gycoding.exceptions.model.APIException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,6 +13,7 @@ import java.util.UUID;
 @Repository
 public interface GroupService {
     GroupODTO get(String userId, UUID chatId) throws APIException;
+    List<GroupODTO> list(String userId) throws APIException;
     GroupODTO create(String userId, GroupIDTO group) throws APIException;
     void delete(String userId, UUID chatId) throws APIException;
 
