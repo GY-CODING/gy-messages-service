@@ -27,7 +27,7 @@ public class GroupController {
         return ResponseEntity.ok(mapper.toRSDTO(service.get(userId, chatId)));
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<?> listChats(
             @RequestHeader("x-user-id") String userId
     ) throws APIException {
