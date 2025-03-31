@@ -18,14 +18,14 @@ pipeline {
                             "email": "'"${KOYEB_EMAIL}"'",
                             "password": "'"${KOYEB_PASSWORD}"'"
                         }')
-                
+
                         echo "$response" | jq -r '.token.id'
                     ''', returnStdout: true).trim()
-                
+
                     if (!bearerToken || bearerToken == "null") {
                         error("🚨 ERROR: Wrong Koyeb credentials provided.")
                     }
-                
+
                     env.BEARER_TOKEN = bearerToken
                     echo "✅ Successfully loged in to Koyeb."
                 }
@@ -40,14 +40,14 @@ pipeline {
                             -H "Authorization: Bearer ${BEARER_TOKEN}" \
                             | jq -r '.deployment.id'
                         """, returnStdout: true).trim()
-    
+
                         if (!response) {
                             error("🚨 ERROR: Koyeb deployment could not be started.")
                         }
-    
+
                         env.DEPLOYMENT_ID = response
                         echo "🚀 Deployment started with ID: ${env.DEPLOYMENT_ID}"
-    
+
                         timeout(time: 30, unit: 'MINUTES') {
                             waitUntil {
                                 sleep 10
@@ -56,16 +56,16 @@ pipeline {
                                     -H "Authorization: Bearer ${BEARER_TOKEN}" \
                                     | jq -r '.deployment.status'
                                 """, returnStdout: true).trim()
-    
+
                                 echo "⏳ Current deployment status: ${status}"
-    
+
                                 if (status == "HEALTHY") {
                                     echo "✅ Deployment done."
                                     return true
                                 } else if (status == "FAILED") {
                                     error("🚨 ERROR: Deployment has failed.")
                                 }
-                                
+
                                 return false
                             }
                         }
