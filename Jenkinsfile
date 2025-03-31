@@ -8,12 +8,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout SCM') {
-            steps {
-                git branch: 'master', url: 'https://github.com/GY-CODING/gy-messages-service.git'
-            }
-        }
-
         stage('Login to Koyeb') {
             steps {
                 script {
