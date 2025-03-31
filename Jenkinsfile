@@ -48,7 +48,7 @@ pipeline {
                         env.DEPLOYMENT_ID = response
                         echo "🚀 Deployment started with ID: ${env.DEPLOYMENT_ID}"
     
-                        timeout(time: 10, unit: 'MINUTES') {
+                        timeout(time: 30, unit: 'MINUTES') {
                             waitUntil {
                                 sleep 10
                                 def status = sh(script: """
