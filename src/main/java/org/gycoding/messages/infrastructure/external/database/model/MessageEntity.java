@@ -5,11 +5,10 @@ import org.gycoding.messages.shared.MessageStates;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.util.Map;
 
 @Builder
 public record MessageEntity(
-        String author,
+        MemberEntity author,
         String content,
         String date,
         MessageStates state

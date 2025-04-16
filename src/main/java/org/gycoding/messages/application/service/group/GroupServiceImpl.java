@@ -79,7 +79,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public GroupODTO create(String userId, GroupIDTO group) throws APIException {
-        final var groupChat = mapper.toMO(group);
+        final var groupChat = mapper.toMO(group, gyAccountsFacade);
 
         gyNotificationsFacade.notify(groupChat.chatId().toString());
         gyAccountsFacade.addChat(userId, groupChat.chatId(), Boolean.TRUE);
@@ -269,9 +269,16 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public MessageODTO sendMessage(String userId, UUID chatId, String content) throws APIException {
         var userIsMember        = false;
+        final var groupChat     = repository.get(chatId).orElseThrow(() ->
+                new APIException(
+                        ChatAPIError.RESOURCE_NOT_FOUND.getCode(),
+                        ChatAPIError.RESOURCE_NOT_FOUND.getMessage(),
+                        ChatAPIError.RESOURCE_NOT_FOUND.getStatus()
+                )
+        );
 
         try {
-            for(MemberMO memberMO : repository.listMembers(chatId)) {
+            for(MemberMO memberMO : groupChat.members()) {
                 if(memberMO.userId().equals(userId)) {
                     Logger.info("User has been confirmed as a member of the specified chat.", new JSONObject().put("userId", userId));
 
@@ -291,7 +298,13 @@ public class GroupServiceImpl implements GroupService {
             }
 
             var message = MessageMO.builder()
-                    .author(userId)
+                    .author(
+                            MemberMO.builder()
+                            .userId(userId)
+                            .username(groupChat.members().stream().filter(member -> member.userId().equals(userId)).findFirst().orElseThrow().username())
+                            .isAdmin(groupChat.members().stream().filter(member -> member.userId().equals(userId)).findFirst().orElseThrow().isAdmin())
+                            .build()
+                    )
                     .content(content)
                     .date(OffsetDateTime.now().format(MessageMO.DATE_FORMAT))
                     .state(MessageStates.SENT)

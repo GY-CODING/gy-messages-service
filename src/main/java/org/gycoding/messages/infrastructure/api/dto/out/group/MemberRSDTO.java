@@ -5,5 +5,6 @@ import lombok.Builder;
 @Builder
 public record MemberRSDTO(
         String userId,
+        String username,
         Boolean isAdmin
 ) { }

@@ -18,18 +18,18 @@ import java.util.UUID;
 
 @Service
 public class GYAccountsFacadeImpl implements GYAccountsFacade {
-    private @Value("${gy.accounts.url}") String URL;
-    private @Value("${allowed.apiKey}") String API_KEY;
+    private @Value("${gy.accounts.url}") String url;
+    private @Value("${allowed.apiKey}") String apiKey;
 
     @Override
     public List<UUID> listChats(String userId) {
         final var headers = new HashMap<String, String>();
 
         headers.put("x-user-id", userId);
-        headers.put("x-api-key", API_KEY);
+        headers.put("x-api-key", apiKey);
 
         HttpResponse<String> response = UnirestFacade.get(
-                URL + "/messages/chats",
+                url + "/messages/chats",
                 headers
         );
         var parser = new JSONParser();
@@ -55,11 +55,11 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
         final var headers = new HashMap<String, String>();
 
         headers.put("x-user-id", userId);
-        headers.put("x-api-key", API_KEY);
+        headers.put("x-api-key", apiKey);
         headers.put("Content-Type", "application/json");
 
         UnirestFacade.patch(
-                URL + "/messages/chats/add",
+                url + "/messages/chats/add",
                 headers,
                 String.format("{\"chatId\": \"%s\", \"isAdmin\": %s}", chatId.toString(), isAdmin.toString())
         );
@@ -70,11 +70,26 @@ public class GYAccountsFacadeImpl implements GYAccountsFacade {
         final var headers = new HashMap<String, String>();
 
         headers.put("x-user-id", userId);
-        headers.put("x-api-key", API_KEY);
+        headers.put("x-api-key", apiKey);
 
         UnirestFacade.delete(
-                URL + String.format("/messages/chats?chatId=%s", chatId.toString()),
+                url + String.format("/messages/chats?chatId=%s", chatId.toString()),
                 headers
         );
+    }
+
+    @Override
+    public String getUsername(String userId) {
+        final var headers = new HashMap<String, String>();
+
+        headers.put("x-user-id", userId);
+        headers.put("x-api-key", apiKey);
+
+        HttpResponse<String> response = UnirestFacade.get(
+                url + "/user/username",
+                headers
+        );
+
+        return response.getBody();
     }
 }

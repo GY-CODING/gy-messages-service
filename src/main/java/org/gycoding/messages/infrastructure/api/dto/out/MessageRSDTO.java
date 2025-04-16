@@ -1,6 +1,7 @@
 package org.gycoding.messages.infrastructure.api.dto.out;
 
 import lombok.Builder;
+import org.gycoding.messages.infrastructure.api.dto.out.group.MemberRSDTO;
 import org.gycoding.messages.shared.MessageStates;
 
 import java.time.format.DateTimeFormatter;
@@ -8,7 +9,7 @@ import java.time.format.DateTimeFormatterBuilder;
 
 @Builder
 public record MessageRSDTO(
-        String author,
+        MemberRSDTO author,
         String content,
         String date,
         MessageStates state
